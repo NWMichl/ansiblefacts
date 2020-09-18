@@ -7,4 +7,4 @@
   tasks:
 
   - name: TEMPLATE OUT DEVICE-FACTS WITH JINJA2
-    template: src=jinja2/devicefact.j2 dest="devices/{{inventory_hostname}}.md"
+    template: src=devicefact.j2 dest="devices/{{inventory_hostname}}.md"
