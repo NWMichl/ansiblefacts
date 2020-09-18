@@ -1,0 +1,16 @@
+#jinja2: trim_blocks:False
+# {{inventory_hostname}}  
+
+Mgmt-IP:    **{{ansible_host}}**<br>
+Console:    **{{con1| default("n.a.")}}**<br>
+
+Model:      **{{ansible_net_model | default(none)}}**<br>
+S/N:        **{{ansible_net_serialnum | default(none)}}**<br>
+Software:   **{{ansible_net_version | default(none)}}**<br>
+Image:      **{{ansible_net_image | default(none)}}**<br>
+
+| Interface | Line | Oper | Description | IP Address | Neighbor |
+| --------- | ---- | ---- | ----------- | ---------- |----------|
+{% for interface in ansible_facts.net_interfaces -%}
+| {{ interface }} | {{ ansible_facts.net_interfaces[interface].operstatus }} | {{ ansible_facts.net_interfaces[interface].lineprotocol }} | {{ ansible_facts.net_interfaces[interface].description }} | {{ ansible_facts.net_interfaces[interface].ipv4[0].address | default("n") }}/{{ ansible_facts.net_interfaces[interface].ipv4[0].subnet | default("a") }} | {{ ansible_facts.net_neighbors[interface][0].host | default(none) }} |
+{% endfor %}
