@@ -6,5 +6,11 @@
   
   tasks:
 
-  - name: TEMPLATE OUT DEVICE-FACTS WITH JINJA2
-    template: src=devicefact.j2 dest="devices/{{inventory_hostname}}.md"
+  - name: TEMPLATE OUT IOS DEVICE-FACTS WITH JINJA2
+    template: src=devicefact_ios.j2 dest="devices/{{inventory_hostname}}.md"
+    when: ansible_network_os == 'ios'
+
+  - name: TEMPLATE OUT NX-OS DEVICE-FACTS WITH JINJA2
+    template: src=devicefact_nxos.j2 dest="devices/{{inventory_hostname}}.md"
+    when: ansible_network_os == 'nxos'
+
