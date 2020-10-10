@@ -14,3 +14,7 @@
     template: src=devicefact_nxos.j2 dest="devices/{{inventory_hostname}}.md"
     when: ansible_network_os == 'nxos'
 
+  - name: TEMPLATE OUT EOS DEVICE-FACTS WITH JINJA2
+    template: src=devicefact_eos.j2 dest="devices/{{inventory_hostname}}.md"
+    when: ansible_network_os == 'eos'
+
