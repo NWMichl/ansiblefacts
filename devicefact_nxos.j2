@@ -11,5 +11,5 @@ Image:      **{{ansible_net_image | default(none)}}**<br>
 | Interface | State | Description | IPv4 | IPv6 | Neighbor |
 | --------- | ----- | ----------- | ---- | ---- | -------- |
 {% for interface in ansible_facts.net_interfaces | sort -%}
-| {{ interface }} | {{ ansible_facts.net_interfaces[interface].state }} | {{ ansible_facts.net_interfaces[interface].description | default(none) }} | {{ ansible_facts.net_interfaces[interface].ipv4.address | default("n") }}/{{ ansible_facts.net_interfaces[interface].ipv4.masklen | default("a") }} | {{ ansible_facts.net_interfaces[interface].ipv6.address | default(none) }} {{ ansible_facts.net_interfaces[interface].ipv6.subnet | default(none) }} | {{ ansible_facts.net_neighbors[interface][0].host | default(none) }} |
+| {{ interface }} | {{ ansible_facts.net_interfaces[interface].state | default(empty) }} | {{ ansible_facts.net_interfaces[interface].description | default(none) }} | {{ ansible_facts.net_interfaces[interface].ipv4.address | default("n") }}/{{ ansible_facts.net_interfaces[interface].ipv4.masklen | default("a") }} | {{ ansible_facts.net_interfaces[interface].ipv6.address | default(none) }} {{ ansible_facts.net_interfaces[interface].ipv6.subnet | default(none) }} | {{ ansible_facts.net_neighbors[interface][0].host | default(none) }} |
 {% endfor %}
