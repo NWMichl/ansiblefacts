@@ -1,6 +1,6 @@
 # CSR-1  
 
-Mgmt-IP:    **192.168.10.211**<br>
+Mgmt-IP:    **ssh://192.168.10.211**<br>
 Console:    **n.a.**<br>
 
 Model:      **CSR1000V**<br>
